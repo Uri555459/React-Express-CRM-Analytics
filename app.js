@@ -2,12 +2,16 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const morgan = require('morgan')
+const passport = require('passport')
+
 const authRoutes = require('./routes/auth')
 const analyticsRoutes = require('./routes/analytics')
 const categoryRoutes = require('./routes/category')
 const orderRoutes = require('./routes/order')
 const positionRoutes = require('./routes/position')
+
 const keys = require('./config/keys')
+
 const app = express()
 
 // Подключение к MongoDB
@@ -16,6 +20,9 @@ mongoose
   .then(() => console.log('MongoDB connected.'))
   .catch((error) => console.log(error))
 
+// Подключение passportjs
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 // Выводить в консоль более информативные логи
 app.use(morgan('dev'))
 // Настройка запросов
