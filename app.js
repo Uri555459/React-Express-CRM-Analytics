@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-// Выводит логи запросов в консоль
+// Выводит более подробные логи в консоль
 const morgan = require('morgan')
 
 const authRoutes = require('./routes/auth')
