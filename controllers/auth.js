@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const keys = require('../config/keys')
+const errorHandler = require('../utils/errorHandler')
 
 module.exports.login = async (req, res) => {
   const candidate = await User.findOne({ email: req.body.email })
@@ -65,7 +66,7 @@ module.exports.register = async (req, res) => {
       //   message: 'Пользователь успешно создан',
       // })
     } catch (error) {
-      // Обработать ошибку
+      errorHandler(res, error)
     }
   }
 }
