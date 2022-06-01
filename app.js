@@ -25,6 +25,8 @@ app.use(passport.initialize())
 require('./middleware/passport')(passport)
 // Выводить в консоль более информативные логи
 app.use(morgan('dev'))
+// Делаем папку uploads статичной для получения из нее каритинок на клиентской части
+app.use('/uploads', express.static('uploads'))
 // Настройка запросов
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
